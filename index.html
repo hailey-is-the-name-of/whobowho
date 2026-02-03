@@ -82,8 +82,7 @@
         }
 
         .logo-area img {
-            height: 40px;
-            /* Adjust as needed */
+            width: 250px;
         }
 
         h1.page-title {
@@ -398,7 +397,7 @@
         }
 
         .footer-logo img {
-            height: 30px;
+            width: 200px;
         }
 
         /* Responsive */
@@ -412,6 +411,50 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Modal Styles Update */
+        .modal-header {
+            text-align: center;
+        }
+
+        .modal-photo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+            background: var(--gray-100);
+        }
+
+        .modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .career-list {
+            list-style: none;
+            text-align: left;
+            margin-top: 15px;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 15px;
+        }
+
+        .career-list li {
+            font-size: 14px;
+            color: var(--gray-700);
+            padding: 4px 0;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .career-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
     </style>
 </head>
 
@@ -420,9 +463,9 @@
     <header class="header-section">
         <div class="container">
             <div class="logo-area">
-                <img src="images/logo.png" alt="더불어민주당 Logo">
+                <img src="images/whobo.png" alt="더불어민주당 Logo">
             </div>
-            <h1 class="page-title">제9회 전국동시지방선거 후보소개</h1>
+            <h1 class="page-title">더불어민주당 대구광역시당<br>제9회 전국동시지방선거 후보소개</h1>
 
             <nav class="main-nav">
                 <button class="nav-btn active" data-category="mayor">시장</button>
@@ -458,11 +501,17 @@
         <div class="modal-content">
             <button class="close-modal">&times;</button>
             <div class="modal-header">
+                <div class="modal-photo">
+                    <img id="m-photo-img" src="images/placeholder.svg" alt="Candidates">
+                </div>
                 <h3 id="m-name">후보 이름</h3>
                 <p id="m-title">선거구/직책</p>
             </div>
             <div class="modal-body">
                 <p id="m-bio">약력 및 소개 내용...</p>
+                <ul id="m-career-list" class="career-list">
+                    <!-- Javascript populates this -->
+                </ul>
             </div>
             <div class="modal-links" id="m-links">
                 <!-- Links injected here -->
