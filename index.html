@@ -439,6 +439,7 @@
             margin-top: 15px;
             border-top: 1px solid var(--gray-200);
             padding-top: 15px;
+            margin-bottom: 20px;
         }
 
         .career-list li {
@@ -454,6 +455,34 @@
             position: absolute;
             left: 0;
             color: var(--primary);
+        }
+
+        .btn-more-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-more {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 5px 10px;
+            background: #f0f7ff;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-more:hover {
+            background: #e0efff;
+        }
+
+        #m-bio {
+            padding-top: 15px;
+            border-top: 1px dashed var(--gray-200);
+            white-space: pre-line;
+            /* Handle newlines in bio */
         }
     </style>
 </head>
@@ -508,10 +537,13 @@
                 <p id="m-title">선거구/직책</p>
             </div>
             <div class="modal-body">
-                <p id="m-bio">약력 및 소개 내용...</p>
                 <ul id="m-career-list" class="career-list">
                     <!-- Javascript populates this -->
                 </ul>
+                <div id="m-more-container" class="btn-more-container" style="display:none;">
+                    <button id="btn-show-more" class="btn-more">+ 더보기</button>
+                </div>
+                <p id="m-bio">약력 및 소개 내용...</p>
             </div>
             <div class="modal-links" id="m-links">
                 <!-- Links injected here -->
