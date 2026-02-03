@@ -67,7 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 image: 'images/01.jpg', // Existing asset
                 career: '제10대 분식협회회장\n속이꽉찬만두위원회 위원장',
                 slogan: '나의 만두는 매우 알차서\n한입만으로도 배부를 수 있다',
-                bio: '대구광역시장 후보 김만두입니다. 맛있는 대구, 살기 좋은 대구를 만들겠습니다.',
+                bio: `안녕하세요, 김만두입니다.\n\n저 김만두, 30년 평생을 오직 만두만 빚고 만두 생각에, 그리고 분식 생각에, 그리고 우리 아이들의 먹거리 어른들의 먹거리 청춘의 먹거리 추억의 먹거리 생각에 밀가루와 투쟁해왔습니다.\n\n저 김만두, 오직 밀가루와 만두소만을 가지고 진실되게 만두를 빚어왔습니다. 그 진실된 마음으로, 이제는 단지 우리가 건강하게 먹을 먹거리뿐만 아닌 대구시민들의 삶을 더욱 알차고 맛잇게 빚어보겠습니다.\n\n저 김만두, 할 수 있습니다. 저에게 만두를 사간 사람중 단 한명도 남긴 사람이 없습니다. 믿어주십시오.`,
+                detail_career: [
+                    '제10대 분식협회회장',
+                    '속이꽉찬만두위원회 위원장',
+                    '제3회 김밥떡볶이만두대회우승자',
+                    '제6회 전국 1짱 만두 준우승',
+                    '현) 만두가짱이야 가게 운영중'
+                ],
                 youtube: '#',
                 sns: { blog: '#', facebook: '#' }
             }
@@ -210,10 +217,44 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('m-name').textContent = c.name;
         document.getElementById('m-title').textContent = `${c.district} ${c.type}`;
         document.getElementById('m-bio').textContent = c.bio;
+        document.getElementById('m-photo-img').src = c.image;
+
+        // Populate Career List
+        const careerList = document.getElementById('m-career-list');
+        const moreContainer = document.getElementById('m-more-container');
+        const btnMore = document.getElementById('btn-show-more');
+
+        careerList.innerHTML = '';
+        moreContainer.style.display = 'none';
+
+        if (c.detail_career && c.detail_career.length > 0) {
+            c.detail_career.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+
+                // Hide items after index 1 (show 2 items)
+                if (index >= 2) {
+                    li.style.display = 'none';
+                    li.classList.add('hidden-career');
+                }
+
+                careerList.appendChild(li);
+            });
+
+            // If more than 2 items, show the button
+            if (c.detail_career.length > 2) {
+                moreContainer.style.display = 'block';
+                btnMore.onclick = () => {
+                    const hiddenItems = careerList.querySelectorAll('.hidden-career');
+                    hiddenItems.forEach(item => item.style.display = 'list-item');
+                    moreContainer.style.display = 'none'; // Hide button after clicking
+                };
+            }
+        }
 
         const links = document.getElementById('m-links');
         links.innerHTML = '';
-        if (c.youtube) links.innerHTML += `<a href="${c.youtube}" target="_blank" class="btn-link yt">유튜브 영상 보기</a>`;
+        if (c.youtube) links.innerHTML += `<a href="${c.youtube}" target="_blank" class="btn-link yt">유튜브 채널</a>`;
         if (c.sns.blog) links.innerHTML += `<a href="${c.sns.blog}" target="_blank" class="btn-link blog">블로그</a>`;
 
         modal.classList.add('active');
